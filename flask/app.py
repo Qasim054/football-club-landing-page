@@ -28,11 +28,11 @@ def home():
 
 @app.route('/squad')
 def squad():
-    return render_template('squad.html', players=squad_data)
+    return render_template('squad.html')
 
 @app.route('/fixtures')
 def fixtures():
-    return render_template('fixtures.html', matches=fixtures_data)
+    return render_template('fixtures.html')
 
 @app.route('/contact')
 def contact():
