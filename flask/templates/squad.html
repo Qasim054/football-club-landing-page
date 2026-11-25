@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .page-header { margin-bottom: 35px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .page-header h1 { font-size: 36px; }
+    .page-header p { color: var(--text-secondary); font-size: 15px; margin-top: 6px; }
+
+    .player-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+    .player-card:hover {
+        border-color: var(--neon-green);
+        transform: translateY(-5px);
+    }
+
+    /* Giant Stylistic Jersey Number instead of Photo */
+    .jersey-bg {
+        position: absolute;
+        top: -10px;
+        right: 12px;
+        font-size: 84px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.04);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .role-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: rgba(0, 210, 255, 0.1);
+        color: var(--neon-cyan);
+        margin-bottom: 14px;
+    }
+
+    .p-num { color: var(--neon-green); font-weight: 700; font-size: 15px; margin-right: 6px; }
+    .p-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .p-pos { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+
+    .p-stats {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        padding-top: 14px;
+        font-size: 13px;
+    }
+    .p-stats span { color: var(--text-secondary); }
+    .p-stats strong { color: #fff; display: block; font-size: 16px; margin-top: 2px; }
+
+    .status-pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
+    .fit { background: rgba(0, 245, 155, 0.12); color: var(--neon-green); }
+    .captain { background: rgba(251, 191, 36, 0.15); color: var(--gold); }
+    .injured { background: rgba(255, 71, 87, 0.15); color: var(--danger); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <span class="pill">2026 Roster</span>
+        <h1>First Team <span class="gradient-text">Squad</span></h1>
+        <p>Official registered players for the AJK Premier League & Kashmir Cup.</p>
+    </div>
+</div>
+
+<div class="grid-4">
+    {% for p in players %}
+    <div class="player-card">
+        <div class="jersey-bg">{{ p.no }}</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="role-badge">{{ p.role }}</span>
+            {% if p.status == 'Captain' %}
+                <span class="status-pill captain">★ CAPTAIN</span>
+            {% elif p.status == 'Injured' %}
+                <span class="status-pill injured">INJURED</span>
+            {% else %}
+                <span class="status-pill fit">FIT</span>
+            {% endif %}
+        </div>
+
+        <div class="p-name"><span class="p-num">#{{ p.no }}</span>{{ p.name }}</div>
+        <div class="p-pos">{{ p.position }} • Age {{ p.age }}</div>
+
+        <div class="p-stats">
+            <div><span>Appearances</span><strong>{{ p.apps }}</strong></div>
+            {% if p.role == 'GK' %}
+                <div><span>Clean Sheets</span><strong>{{ p.clean_sheets }}</strong></div>
+            {% else %}
+                <div><span>Goals</span><strong>{{ p.goals }}</strong></div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

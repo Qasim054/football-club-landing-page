@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 35px;
+        align-items: start;
+    }
+    .info-panel h1 { font-size: 36px; margin-bottom: 14px; }
+    .info-panel p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 30px; }
+
+    .detail-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 18px 22px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    .detail-box span { font-size: 11px; color: var(--neon-green); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+    .detail-box div { font-size: 15px; color: #fff; margin-top: 5px; font-weight: 500; }
+
+    .form-panel {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 35px;
+        border-radius: 14px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500; }
+    .form-input {
+        width: 100%;
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        padding: 13px 15px;
+        border-radius: 8px;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: 0.25s;
+    }
+    .form-input:focus { border-color: var(--neon-green); }
+
+    @media (max-width: 800px) {
+        .contact-grid { grid-template-columns: 1fr; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="contact-grid">
+    <div class="info-panel">
+        <span class="pill">Club Headquarters</span>
+        <h1>Connect With <span class="gradient-text">Mirpur United</span></h1>
+        <p>Have inquiries regarding youth academy trials, matchday passes, or club sponsorships? Reach out directly to our management team.</p>
+
+        <div class="detail-box">
+            <span>Stadium & Office</span>
+            <div>Quaid-e-Azam Stadium, Sector F-1, Mirpur, AJK</div>
+        </div>
+        <div class="detail-box">
+            <span>Official Email</span>
+            <div>management@mirpurunitedfc.pk</div>
+        </div>
+        <div class="detail-box">
+            <span>Club Desk</span>
+            <div>+92 5827 441122 (Mon – Sat, 10 AM – 6 PM)</div>
+        </div>
+    </div>
+
+    <div class="form-panel">
+        <form>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-input" placeholder="e.g. Bilal Ahmed" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" class="form-input" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" class="form-input" placeholder="Academy Trials / Sponsorship / General" required>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea class="form-input" rows="4" placeholder="Write your message here..." required></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Submit Inquiry</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

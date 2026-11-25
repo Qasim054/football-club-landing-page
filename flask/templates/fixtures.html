@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .page-header { margin-bottom: 35px; }
+    .page-header h1 { font-size: 36px; }
+    .page-header p { color: var(--text-secondary); margin-top: 6px; }
+
+    .fixture-row {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 22px 28px;
+        margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: 1.2fr 2.5fr 1.5fr 1fr;
+        align-items: center;
+        gap: 20px;
+        transition: 0.25s;
+    }
+    .fixture-row:hover {
+        border-color: rgba(0, 245, 155, 0.4);
+        background: #162030;
+    }
+
+    .f-date { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: #fff; }
+    .f-comp { font-size: 12px; color: var(--neon-cyan); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .f-teams { font-size: 19px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+    .vs-tag { font-size: 12px; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 4px; color: var(--text-secondary); }
+
+    .f-venue { font-size: 13px; color: var(--text-secondary); }
+    .f-type { font-size: 11px; font-weight: 700; color: var(--neon-green); margin-top: 4px; }
+
+    .f-result { text-align: right; }
+    .res-badge {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+    }
+    .upcoming { background: rgba(0, 245, 155, 0.1); color: var(--neon-green); border: 1px solid rgba(0, 245, 155, 0.3); }
+    .played { background: rgba(255, 255, 255, 0.08); color: #fff; }
+
+    @media (max-width: 850px) {
+        .fixture-row { grid-template-columns: 1fr; text-align: left; gap: 12px; }
+        .f-result { text-align: left; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <span class="pill">Match Center</span>
+    <h1>Fixtures & <span class="gradient-text">Results</span></h1>
+    <p>Season 2026 schedule and official match outcomes.</p>
+</div>
+
+{% for m in matches %}
+<div class="fixture-row">
+    <div>
+        <div class="f-date">{{ m.date }}</div>
+        <div class="f-comp">{{ m.competition }}</div>
+    </div>
+
+    <div class="f-teams">
+        <span>Mirpur United</span>
+        <span class="vs-tag">VS</span>
+        <span>{{ m.opponent }}</span>
+    </div>
+
+    <div>
+        <div class="f-venue">{{ m.venue }}</div>
+        <div class="f-type">{{ m.type }} • {{ m.time }}</div>
+    </div>
+
+    <div class="f-result">
+        {% if m.result == 'UPCOMING' %}
+            <span class="res-badge upcoming">{{ m.time }}</span>
+        {% else %}
+            <span class="res-badge played">{{ m.result }}</span>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
