@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirpur United FC | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #06090e;
+            --bg-surface: #0d131d;
+            --bg-card: #121a27;
+            --neon-green: #00f59b;
+            --neon-cyan: #00d2ff;
+            --gold: #fbbf24;
+            --danger: #ff4757;
+            --text-primary: #ffffff;
+            --text-secondary: #8b9bb4;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            /* Modern subtle architectural grid background without images */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .brand, .jersey-num { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Navbar */
+        header {
+            background: rgba(6, 9, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--neon-green);
+            border-radius: 2px;
+            transform: rotate(45deg);
+            box-shadow: 0 0 12px var(--neon-green);
+        }
+
+        nav { display: flex; gap: 8px; }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+
+        nav a.active {
+            color: var(--bg-main);
+            background: var(--neon-green);
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(0, 245, 155, 0.25);
+        }
+
+        /* Main Container */
+        main { flex: 1; width: 88%; max-width: 1200px; margin: 50px auto; }
+
+        /* Typography & Accents */
+        .pill {
+            display: inline-block;
+            padding: 5px 14px;
+            background: rgba(0, 245, 155, 0.08);
+            border: 1px solid rgba(0, 245, 155, 0.3);
+            color: var(--neon-green);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff 0%, var(--neon-green) 50%, var(--neon-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background: var(--neon-green);
+            color: var(--bg-main);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 245, 155, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--border);
+            margin-left: 12px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: none;
+        }
+
+        /* Cards & Grids */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 245, 155, 0.4);
+            transform: translateY(-4px);
+            background: #162030;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            background: var(--bg-surface);
+            padding: 25px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            footer { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <a href="{{ url_for('home') }}" class="brand">
+            <span class="brand-dot"></span> MIRPUR UNITED FC
+        </a>
+        <nav>
+            <a href="{{ url_for('home') }}" class="{% if active_page == 'home' %}active{% endif %}">Overview</a>
+            <a href="{{ url_for('squad') }}" class="{% if active_page == 'squad' %}active{% endif %}">Squad</a>
+            <a href="{{ url_for('fixtures') }}" class="{% if active_page == 'fixtures' %}active{% endif %}">Fixtures</a>
+            <a href="{{ url_for('contact') }}" class="{% if active_page == 'contact' %}active{% endif %}">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div><strong>MIRPUR UNITED FC</strong> — Quaid-e-Azam Stadium, Mirpur, AJK</div>
+        <div>&copy; 2026 Official Club Portal. All Rights Reserved.</div>
+    </footer>
+
+</body>
+</html>
