@@ -24,19 +24,19 @@ fixtures_data = [
 
 @app.route('/')
 def home():
-    return render_template('index.html', active_page='home')
+    return render_template('index.html')
 
 @app.route('/squad')
 def squad():
-    return render_template('squad.html', players=squad_data, active_page='squad')
+    return render_template('squad.html', players=squad_data)
 
 @app.route('/fixtures')
 def fixtures():
-    return render_template('fixtures.html', matches=fixtures_data, active_page='fixtures')
+    return render_template('fixtures.html', matches=fixtures_data)
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html', active_page='contact')
+    return render_template('contact.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
